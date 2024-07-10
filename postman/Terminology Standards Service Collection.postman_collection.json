@@ -1,0 +1,3610 @@
+{
+	"info": {
+		"_postman_id": "b80fe259-5076-470e-b28f-d193db8f46a3",
+		"name": "Terminology Standards Service Collection",
+		"description": "Documentation describing the parts of the FHIR specification implemented by Ontoserver\n\n[https://ontoserver.csiro.au/docs/6/api-fhir.html](https://ontoserver.csiro.au/docs/6/api-fhir.html)\n\nFurther detail also available in the FHIR specification for the terminology module\n\n[https://hl7.org/fhir/R4/terminology-module.html](https://hl7.org/fhir/R4/terminology-module.html)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33728064",
+		"_collection_link": "https://www.postman.com/terminologystandardsservice/workspace/terminology-standards-service/collection/34886249-b80fe259-5076-470e-b28f-d193db8f46a3?action=share&source=collection_link&creator=33728064"
+	},
+	"item": [
+		{
+			"name": "Basic Examples",
+			"item": [
+				{
+					"name": "ValueSet Examples",
+					"item": [
+						{
+							"name": "List ValueSets",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{terminology-server}}/ValueSet",
+									"host": [
+										"{{terminology-server}}"
+									],
+									"path": [
+										"ValueSet"
+									]
+								},
+								"description": "[https://hl7.org/fhir/R4/valueset.html](https://hl7.org/fhir/R4/valueset.html#search)"
+							},
+							"response": []
+						},
+						{
+							"name": "List ValueSets (Snomed only)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{terminology-server}}/ValueSet?reference=http://snomed.info/sct",
+									"host": [
+										"{{terminology-server}}"
+									],
+									"path": [
+										"ValueSet"
+									],
+									"query": [
+										{
+											"key": "reference",
+											"value": "http://snomed.info/sct"
+										}
+									]
+								},
+								"description": "[https://hl7.org/fhir/R4/valueset.html#search](https://hl7.org/fhir/R4/valueset.html#search)"
+							},
+							"response": []
+						},
+						{
+							"name": "ValueSet (definition)",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{terminology-server}}/ValueSet/SS-AntigenCode-20240229",
+									"host": [
+										"{{terminology-server}}"
+									],
+									"path": [
+										"ValueSet",
+										"SS-AntigenCode-20240229"
+									]
+								},
+								"description": "[https://hl7.org/fhir/R4/valueset.html](https://hl7.org/fhir/R4/valueset.html#search)"
+							},
+							"response": []
+						},
+						{
+							"name": "Basic $expand",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{terminology-server}}/ValueSet/$expand?url=https://fhir.infoway-inforoute.ca/ValueSet/antigencode",
+									"host": [
+										"{{terminology-server}}"
+									],
+									"path": [
+										"ValueSet",
+										"$expand"
+									],
+									"query": [
+										{
+											"key": "url",
+											"value": "https://fhir.infoway-inforoute.ca/ValueSet/antigencode"
+										}
+									]
+								},
+								"description": "[https://hl7.org/fhir/R4/valueset-operation-expand.html](https://hl7.org/fhir/R4/valueset-operation-expand.html)"
+							},
+							"response": []
+						},
+						{
+							"name": "Basic $expand POST with count",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"resourceType\": \"Parameters\",\n    \"parameter\": [\n        {\n            \"name\": \"url\",\n            \"valueUri\": \"https://fhir.infoway-inforoute.ca/ValueSet/antigencode\"\n        },\n        {\n            \"name\": \"count\",\n            \"valueInteger\": 10\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{terminology-server}}/ValueSet/$expand",
+									"host": [
+										"{{terminology-server}}"
+									],
+									"path": [
+										"ValueSet",
+										"$expand"
+									]
+								},
+								"description": "[https://hl7.org/fhir/R4/valueset-operation-expand.html](https://hl7.org/fhir/R4/valueset-operation-expand.html)"
+							},
+							"response": []
+						},
+						{
+							"name": "$expand POSTed ValueSet",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"resourceType\": \"Parameters\",\n    \"parameter\": [\n        {\n            \"name\": \"valueSet\",\n            \"resource\": {\n                \"resourceType\": \"ValueSet\",\n                \"compose\": {\n                    \"include\": [\n                        {\n                            \"valueSet\": [\n                                \"http://snomed.info/sct?fhir_vs=refset/22021000087103\"\n                            ]\n                        }\n                    ]\n                }\n            }\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{terminology-server}}/ValueSet/$expand",
+									"host": [
+										"{{terminology-server}}"
+									],
+									"path": [
+										"ValueSet",
+										"$expand"
+									]
+								},
+								"description": "[https://hl7.org/fhir/R4/valueset-operation-expand.html](https://hl7.org/fhir/R4/valueset-operation-expand.html)"
+							},
+							"response": []
+						},
+						{
+							"name": "$expand POSTed ValueSet Example 2",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"resourceType\": \"Parameters\",\n    \"parameter\": [\n        {\n            \"name\": \"valueSet\",\n            \"resource\": {\n                \"resourceType\": \"ValueSet\",\n                \"compose\": {\n                    \"include\": [\n                        {\n                            \"system\": \"http://snomed.info/sct\",\n                            \"filter\": [\n                                {\n                                    \"property\": \"parent\",\n                                    \"op\": \"=\",\n                                    \"value\": \"609569007\"\n                                }\n                            ]\n                        }\n                    ]\n                }\n            }\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{terminology-server}}/ValueSet/$expand",
+									"host": [
+										"{{terminology-server}}"
+									],
+									"path": [
+										"ValueSet",
+										"$expand"
+									]
+								},
+								"description": "[https://hl7.org/fhir/R4/valueset-operation-expand.html](https://hl7.org/fhir/R4/valueset-operation-expand.html)"
+							},
+							"response": []
+						},
+						{
+							"name": "Basic $expand Smart Search ******",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{terminology-server}}/ValueSet/$expand?url=https://fhir.infoway-inforoute.ca/ValueSet/antigencode&filter=typh",
+									"host": [
+										"{{terminology-server}}"
+									],
+									"path": [
+										"ValueSet",
+										"$expand"
+									],
+									"query": [
+										{
+											"key": "url",
+											"value": "https://fhir.infoway-inforoute.ca/ValueSet/antigencode"
+										},
+										{
+											"key": "filter",
+											"value": "typh"
+										}
+									]
+								},
+								"description": "[https://hl7.org/fhir/R4/valueset-operation-expand.html](https://hl7.org/fhir/R4/valueset-operation-expand.html)"
+							},
+							"response": []
+						},
+						{
+							"name": "Basic $expand Smart Search French ******",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Define a handlebars template which renders the response data in a table",
+											"// We define a table and use handlebars `{{#each}}` syntax to map over the response data",
+											"// We can include custom CSS to style the table",
+											"var template = `",
+											"<style type=\"text/css\">",
+											"    table {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse; box-sizing: border-box;}",
+											"    th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px !important;border-style: solid;border-color: #87ceeb;text-align:left;}",
+											"    tr {background-color:#ffffff;}",
+											"    td {font-size:14px;border-width: 1px;padding: 8px !important;border-style: solid;border-color: #87ceeb;}",
+											"    tr:hover {background-color:#e0ffff;}",
+											"</style>",
+											"    ",
+											"<table border=\"1\">",
+											"    <tr>",
+											"        <th>conceptId</th>",
+											"        <th>display</th>",
+											"        <th>url</th>",
+											"        <th>designations</th>",
+											"    </tr>",
+											"    ",
+											"    {{#each response.expansion.contains}}",
+											"        <tr>",
+											"            <td>{{code}}</td>",
+											"            <td>{{display}}</td>",
+											"            <td>{{system}}</td>",
+											"            <td>    <table border=\"1\">",
+											"                        <tr>",
+											"                            <th>language</th>",
+											"                            <th>value</th>",
+											"                            <th>use</th>",
+											"                        </tr>",
+											"                        ",
+											"                        {{#each designation}}",
+											"                            <tr>",
+											"                                <td>{{language}}</td>",
+											"                                <td>{{value}}</td>",
+											"                                <td>{{use.display}}</td>",
+											"                            </tr>",
+											"                        {{/each}}",
+											"                    </table>",
+											"                </td>",
+											"        </tr>",
+											"    {{/each}}",
+											"</table>",
+											"`;",
+											"",
+											"// Pass our template and response data to the Postman visualizer to render it in the \"Visualize\" view",
+											"pm.visualizer.set(template, {",
+											"    response: JSON.parse(responseBody)",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{terminology-server}}/ValueSet/$expand?url=https://fhir.infoway-inforoute.ca/ValueSet/antigencode&filter=typh&displayLanguage=fr&includeDesignations=true",
+									"host": [
+										"{{terminology-server}}"
+									],
+									"path": [
+										"ValueSet",
+										"$expand"
+									],
+									"query": [
+										{
+											"key": "url",
+											"value": "https://fhir.infoway-inforoute.ca/ValueSet/antigencode"
+										},
+										{
+											"key": "filter",
+											"value": "typh"
+										},
+										{
+											"key": "displayLanguage",
+											"value": "fr"
+										},
+										{
+											"key": "includeDesignations",
+											"value": "true"
+										}
+									]
+								},
+								"description": "[https://hl7.org/fhir/R4/valueset-operation-expand.html](https://hl7.org/fhir/R4/valueset-operation-expand.html)"
+							},
+							"response": []
+						},
+						{
+							"name": "Basic $expand Smart Search Canadian English",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Define a handlebars template which renders the response data in a table",
+											"// We define a table and use handlebars `{{#each}}` syntax to map over the response data",
+											"// We can include custom CSS to style the table",
+											"var template = `",
+											"<style type=\"text/css\">",
+											"    table {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse; box-sizing: border-box;}",
+											"    th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px !important;border-style: solid;border-color: #87ceeb;text-align:left;}",
+											"    tr {background-color:#ffffff;}",
+											"    td {font-size:14px;border-width: 1px;padding: 8px !important;border-style: solid;border-color: #87ceeb;}",
+											"    tr:hover {background-color:#e0ffff;}",
+											"</style>",
+											"    ",
+											"<table border=\"1\">",
+											"    <tr>",
+											"        <th>conceptId</th>",
+											"        <th>display</th>",
+											"        <th>url</th>",
+											"        <th>designations</th>",
+											"    </tr>",
+											"    ",
+											"    {{#each response.expansion.contains}}",
+											"        <tr>",
+											"            <td>{{code}}</td>",
+											"            <td>{{display}}</td>",
+											"            <td>{{system}}</td>",
+											"            <td>    <table border=\"1\">",
+											"                        <tr>",
+											"                            <th>language</th>",
+											"                            <th>value</th>",
+											"                            <th>use</th>",
+											"                        </tr>",
+											"                        ",
+											"                        {{#each designation}}",
+											"                            <tr>",
+											"                                <td>{{language}}</td>",
+											"                                <td>{{value}}</td>",
+											"                                <td>{{use.display}}</td>",
+											"                            </tr>",
+											"                        {{/each}}",
+											"                    </table>",
+											"                </td>",
+											"        </tr>",
+											"    {{/each}}",
+											"</table>",
+											"`;",
+											"",
+											"// Pass our template and response data to the Postman visualizer to render it in the \"Visualize\" view",
+											"pm.visualizer.set(template, {",
+											"    response: JSON.parse(responseBody)",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{terminology-server}}/ValueSet/$expand?url=https://fhir.infoway-inforoute.ca/ValueSet/antigencode&filter=typh&displayLanguage=en-x-sctlang-19491000-087109&includeDesignations=true",
+									"host": [
+										"{{terminology-server}}"
+									],
+									"path": [
+										"ValueSet",
+										"$expand"
+									],
+									"query": [
+										{
+											"key": "url",
+											"value": "https://fhir.infoway-inforoute.ca/ValueSet/antigencode"
+										},
+										{
+											"key": "filter",
+											"value": "typh"
+										},
+										{
+											"key": "displayLanguage",
+											"value": "en-x-sctlang-19491000-087109",
+											"description": "Canada English language reference set"
+										},
+										{
+											"key": "includeDesignations",
+											"value": "true"
+										}
+									]
+								},
+								"description": "[https://hl7.org/fhir/R4/valueset-operation-expand.html](https://hl7.org/fhir/R4/valueset-operation-expand.html)"
+							},
+							"response": []
+						},
+						{
+							"name": "Basic $expand Smart Search American English",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Define a handlebars template which renders the response data in a table",
+											"// We define a table and use handlebars `{{#each}}` syntax to map over the response data",
+											"// We can include custom CSS to style the table",
+											"var template = `",
+											"<style type=\"text/css\">",
+											"    table {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse; box-sizing: border-box;}",
+											"    th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px !important;border-style: solid;border-color: #87ceeb;text-align:left;}",
+											"    tr {background-color:#ffffff;}",
+											"    td {font-size:14px;border-width: 1px;padding: 8px !important;border-style: solid;border-color: #87ceeb;}",
+											"    tr:hover {background-color:#e0ffff;}",
+											"</style>",
+											"    ",
+											"<table border=\"1\">",
+											"    <tr>",
+											"        <th>conceptId</th>",
+											"        <th>display</th>",
+											"        <th>url</th>",
+											"        <th>designations</th>",
+											"    </tr>",
+											"    ",
+											"    {{#each response.expansion.contains}}",
+											"        <tr>",
+											"            <td>{{code}}</td>",
+											"            <td>{{display}}</td>",
+											"            <td>{{system}}</td>",
+											"            <td>    <table border=\"1\">",
+											"                        <tr>",
+											"                            <th>language</th>",
+											"                            <th>value</th>",
+											"                            <th>use</th>",
+											"                        </tr>",
+											"                        ",
+											"                        {{#each designation}}",
+											"                            <tr>",
+											"                                <td>{{language}}</td>",
+											"                                <td>{{value}}</td>",
+											"                                <td>{{use.display}}</td>",
+											"                            </tr>",
+											"                        {{/each}}",
+											"                    </table>",
+											"                </td>",
+											"        </tr>",
+											"    {{/each}}",
+											"</table>",
+											"`;",
+											"",
+											"// Pass our template and response data to the Postman visualizer to render it in the \"Visualize\" view",
+											"pm.visualizer.set(template, {",
+											"    response: JSON.parse(responseBody)",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{terminology-server}}/ValueSet/$expand?url=https://fhir.infoway-inforoute.ca/ValueSet/antigencode&filter=typh&displayLanguage=en-x-sctlang-90000000-00005090-07&includeDesignations=true",
+									"host": [
+										"{{terminology-server}}"
+									],
+									"path": [
+										"ValueSet",
+										"$expand"
+									],
+									"query": [
+										{
+											"key": "url",
+											"value": "https://fhir.infoway-inforoute.ca/ValueSet/antigencode"
+										},
+										{
+											"key": "filter",
+											"value": "typh"
+										},
+										{
+											"key": "displayLanguage",
+											"value": "en-x-sctlang-90000000-00005090-07",
+											"description": "US English"
+										},
+										{
+											"key": "includeDesignations",
+											"value": "true"
+										}
+									]
+								},
+								"description": "[https://hl7.org/fhir/R4/valueset-operation-expand.html](https://hl7.org/fhir/R4/valueset-operation-expand.html)"
+							},
+							"response": []
+						},
+						{
+							"name": "Basic $expand Smart Search Multiple preferences",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Define a handlebars template which renders the response data in a table",
+											"// We define a table and use handlebars `{{#each}}` syntax to map over the response data",
+											"// We can include custom CSS to style the table",
+											"var template = `",
+											"<style type=\"text/css\">",
+											"    table {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse; box-sizing: border-box;}",
+											"    th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px !important;border-style: solid;border-color: #87ceeb;text-align:left;}",
+											"    tr {background-color:#ffffff;}",
+											"    td {font-size:14px;border-width: 1px;padding: 8px !important;border-style: solid;border-color: #87ceeb;}",
+											"    tr:hover {background-color:#e0ffff;}",
+											"</style>",
+											"    ",
+											"<table border=\"1\">",
+											"    <tr>",
+											"        <th>conceptId</th>",
+											"        <th>display</th>",
+											"        <th>url</th>",
+											"        <th>designations</th>",
+											"    </tr>",
+											"    ",
+											"    {{#each response.expansion.contains}}",
+											"        <tr>",
+											"            <td>{{code}}</td>",
+											"            <td>{{display}}</td>",
+											"            <td>{{system}}</td>",
+											"            <td>    <table border=\"1\">",
+											"                        <tr>",
+											"                            <th>language</th>",
+											"                            <th>value</th>",
+											"                            <th>use</th>",
+											"                        </tr>",
+											"                        ",
+											"                        {{#each designation}}",
+											"                            <tr>",
+											"                                <td>{{language}}</td>",
+											"                                <td>{{value}}</td>",
+											"                                <td>{{use.display}}</td>",
+											"                            </tr>",
+											"                        {{/each}}",
+											"                    </table>",
+											"                </td>",
+											"        </tr>",
+											"    {{/each}}",
+											"</table>",
+											"`;",
+											"",
+											"// Pass our template and response data to the Postman visualizer to render it in the \"Visualize\" view",
+											"pm.visualizer.set(template, {",
+											"    response: JSON.parse(responseBody)",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{terminology-server}}/ValueSet/$expand?url=https://fhir.infoway-inforoute.ca/ValueSet/antigencode&filter=Neisseria meningitidis conjugated antigen&displayLanguage=en-x-sctlang-90000000-00005080-04,fr,en&includeDesignations=true",
+									"host": [
+										"{{terminology-server}}"
+									],
+									"path": [
+										"ValueSet",
+										"$expand"
+									],
+									"query": [
+										{
+											"key": "url",
+											"value": "https://fhir.infoway-inforoute.ca/ValueSet/antigencode"
+										},
+										{
+											"key": "filter",
+											"value": "Neisseria meningitidis conjugated antigen"
+										},
+										{
+											"key": "displayLanguage",
+											"value": "en-x-sctlang-90000000-00005080-04,fr,en"
+										},
+										{
+											"key": "includeDesignations",
+											"value": "true"
+										}
+									]
+								},
+								"description": "[https://hl7.org/fhir/R4/valueset-operation-expand.html](https://hl7.org/fhir/R4/valueset-operation-expand.html)"
+							},
+							"response": []
+						},
+						{
+							"name": "Basic $expand POST Smart Search",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"resourceType\": \"Parameters\",\n    \"parameter\": [\n        {\n            \"name\": \"url\",\n            \"valueUri\": \"https://fhir.infoway-inforoute.ca/ValueSet/antigencode\"\n        },\n        {\n            \"name\": \"filter\",\n            \"valueString\": \"typh\"\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{terminology-server}}/ValueSet/$expand",
+									"host": [
+										"{{terminology-server}}"
+									],
+									"path": [
+										"ValueSet",
+										"$expand"
+									]
+								},
+								"description": "[https://hl7.org/fhir/R4/valueset-operation-expand.html](https://hl7.org/fhir/R4/valueset-operation-expand.html)"
+							},
+							"response": []
+						},
+						{
+							"name": "Basic $expand with designations (visualise)",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Define a handlebars template which renders the response data in a table",
+											"// We define a table and use handlebars `{{#each}}` syntax to map over the response data",
+											"// We can include custom CSS to style the table",
+											"var template = `",
+											"<style type=\"text/css\">",
+											"    table {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse; box-sizing: border-box;}",
+											"    th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px !important;border-style: solid;border-color: #87ceeb;text-align:left;}",
+											"    tr {background-color:#ffffff;}",
+											"    td {font-size:14px;border-width: 1px;padding: 8px !important;border-style: solid;border-color: #87ceeb;}",
+											"    tr:hover {background-color:#e0ffff;}",
+											"</style>",
+											"    ",
+											"<table border=\"1\">",
+											"    <tr>",
+											"        <th>conceptId</th>",
+											"        <th>display</th>",
+											"        <th>url</th>",
+											"        <th>designations</th>",
+											"    </tr>",
+											"    ",
+											"    {{#each response.expansion.contains}}",
+											"        <tr>",
+											"            <td>{{code}}</td>",
+											"            <td>{{display}}</td>",
+											"            <td>{{system}}</td>",
+											"            <td>    <table border=\"1\">",
+											"                        <tr>",
+											"                            <th>language</th>",
+											"                            <th>value</th>",
+											"                            <th>use</th>",
+											"                        </tr>",
+											"                        ",
+											"                        {{#each designation}}",
+											"                            <tr>",
+											"                                <td>{{language}}</td>",
+											"                                <td>{{value}}</td>",
+											"                                <td>{{use.display}}</td>",
+											"                            </tr>",
+											"                        {{/each}}",
+											"                    </table>",
+											"                </td>",
+											"        </tr>",
+											"    {{/each}}",
+											"</table>",
+											"`;",
+											"",
+											"// Pass our template and response data to the Postman visualizer to render it in the \"Visualize\" view",
+											"pm.visualizer.set(template, {",
+											"    response: JSON.parse(responseBody)",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{terminology-server}}/ValueSet/$expand?url=https://fhir.infoway-inforoute.ca/ValueSet/antigencode&includeDesignations=true",
+									"host": [
+										"{{terminology-server}}"
+									],
+									"path": [
+										"ValueSet",
+										"$expand"
+									],
+									"query": [
+										{
+											"key": "url",
+											"value": "https://fhir.infoway-inforoute.ca/ValueSet/antigencode"
+										},
+										{
+											"key": "includeDesignations",
+											"value": "true"
+										}
+									]
+								},
+								"description": "[https://hl7.org/fhir/R4/valueset-operation-expand.html](https://hl7.org/fhir/R4/valueset-operation-expand.html)"
+							},
+							"response": []
+						},
+						{
+							"name": "Basic $expand with designations - (Flat Visualization)",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{terminology-server}}/ValueSet/$expand?url=https://fhir.infoway-inforoute.ca/ValueSet/antigencode&includeDesignations=true",
+									"host": [
+										"{{terminology-server}}"
+									],
+									"path": [
+										"ValueSet",
+										"$expand"
+									],
+									"query": [
+										{
+											"key": "url",
+											"value": "https://fhir.infoway-inforoute.ca/ValueSet/antigencode"
+										},
+										{
+											"key": "includeDesignations",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "$validate-code",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Define a handlebars template which renders the response data in a table",
+											"// We define a table and use handlebars `{{#each}}` syntax to map over the response data",
+											"// We can include custom CSS to style the table",
+											"var template = `",
+											"<style type=\"text/css\">",
+											"    table {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse; box-sizing: border-box;}",
+											"    th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px !important;border-style: solid;border-color: #87ceeb;text-align:left;}",
+											"    tr {background-color:#ffffff;}",
+											"    td {font-size:14px;border-width: 1px;padding: 8px !important;border-style: solid;border-color: #87ceeb;}",
+											"    tr:hover {background-color:#e0ffff;}",
+											"</style>",
+											"",
+											"<table border=\"1\">",
+											"    <tr>",
+											"        <th>name</th>",
+											"        <th>value</th>",
+											"    </tr>",
+											"    ",
+											"    {{#each response.parameter}}",
+											"        <tr>",
+											"            <td>{{name}}</td>",
+											"            <td>{{valueBoolean}}{{valueCode}}{{valueUri}}{{valueString}}{{valueDecimal}}</td>",
+											"        </tr>",
+											"    {{/each}}",
+											"</table>",
+											"`;",
+											"",
+											"// Pass our template and response data to the Postman visualizer to render it in the \"Visualize\" view",
+											"pm.visualizer.set(template, {",
+											"    response: JSON.parse(responseBody)",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{terminology-server}}/ValueSet/$validate-code?url=https://fhir.infoway-inforoute.ca/ValueSet/antigencode&code=409629009&system=http://snomed.info/sct",
+									"host": [
+										"{{terminology-server}}"
+									],
+									"path": [
+										"ValueSet",
+										"$validate-code"
+									],
+									"query": [
+										{
+											"key": "url",
+											"value": "https://fhir.infoway-inforoute.ca/ValueSet/antigencode"
+										},
+										{
+											"key": "code",
+											"value": "409629009"
+										},
+										{
+											"key": "system",
+											"value": "http://snomed.info/sct"
+										}
+									]
+								},
+								"description": "[https://hl7.org/fhir/R4/valueset-operation-validate-code.html](https://hl7.org/fhir/R4/valueset-operation-validate-code.html)"
+							},
+							"response": []
+						},
+						{
+							"name": "$validate-code With Display ******",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{terminology-server}}/ValueSet/$validate-code?url=https://fhir.infoway-inforoute.ca/ValueSet/antigencode&code=409629009&system=http://snomed.info/sct&display=Anthrax antigen",
+									"host": [
+										"{{terminology-server}}"
+									],
+									"path": [
+										"ValueSet",
+										"$validate-code"
+									],
+									"query": [
+										{
+											"key": "url",
+											"value": "https://fhir.infoway-inforoute.ca/ValueSet/antigencode"
+										},
+										{
+											"key": "code",
+											"value": "409629009"
+										},
+										{
+											"key": "system",
+											"value": "http://snomed.info/sct"
+										},
+										{
+											"key": "display",
+											"value": "Anthrax antigen"
+										}
+									]
+								},
+								"description": "[https://hl7.org/fhir/R4/valueset-operation-validate-code.html](https://hl7.org/fhir/R4/valueset-operation-validate-code.html)"
+							},
+							"response": []
+						},
+						{
+							"name": "$validate-code With Dodgy Display",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{terminology-server}}/ValueSet/$validate-code?url=https://fhir.infoway-inforoute.ca/ValueSet/antigencode&code=409629009&system=http://snomed.info/sct&display=Dodgy Anthrax antigen",
+									"host": [
+										"{{terminology-server}}"
+									],
+									"path": [
+										"ValueSet",
+										"$validate-code"
+									],
+									"query": [
+										{
+											"key": "url",
+											"value": "https://fhir.infoway-inforoute.ca/ValueSet/antigencode"
+										},
+										{
+											"key": "code",
+											"value": "409629009"
+										},
+										{
+											"key": "system",
+											"value": "http://snomed.info/sct"
+										},
+										{
+											"key": "display",
+											"value": "Dodgy Anthrax antigen"
+										}
+									]
+								},
+								"description": "[https://hl7.org/fhir/R4/valueset-operation-validate-code.html](https://hl7.org/fhir/R4/valueset-operation-validate-code.html)"
+							},
+							"response": []
+						},
+						{
+							"name": "$validate-code Dodgy Code",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{terminology-server}}/ValueSet/$validate-code?url=https://fhir.infoway-inforoute.ca/ValueSet/antigencode&code=123456789&system=http://snomed.info/sct",
+									"host": [
+										"{{terminology-server}}"
+									],
+									"path": [
+										"ValueSet",
+										"$validate-code"
+									],
+									"query": [
+										{
+											"key": "url",
+											"value": "https://fhir.infoway-inforoute.ca/ValueSet/antigencode"
+										},
+										{
+											"key": "code",
+											"value": "123456789"
+										},
+										{
+											"key": "system",
+											"value": "http://snomed.info/sct"
+										}
+									]
+								},
+								"description": "[https://hl7.org/fhir/R4/valueset-operation-validate-code.html](https://hl7.org/fhir/R4/valueset-operation-validate-code.html)"
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "CodeSystem Examples",
+					"item": [
+						{
+							"name": "List CodeSystems",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{terminology-server}}/CodeSystem",
+									"host": [
+										"{{terminology-server}}"
+									],
+									"path": [
+										"CodeSystem"
+									]
+								},
+								"description": "[https://hl7.org/fhir/R4/codesystem.html](https://hl7.org/fhir/R4/codesystem.html)"
+							},
+							"response": []
+						},
+						{
+							"name": "List CodeSystem Supplements",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{terminology-server}}/CodeSystem?content-mode=SUPPLEMENT",
+									"host": [
+										"{{terminology-server}}"
+									],
+									"path": [
+										"CodeSystem"
+									],
+									"query": [
+										{
+											"key": "content-mode",
+											"value": "SUPPLEMENT"
+										}
+									]
+								},
+								"description": "[https://hl7.org/fhir/R4/codesystem.html#search](https://hl7.org/fhir/R4/codesystem.html#search)"
+							},
+							"response": []
+						},
+						{
+							"name": "List CodeSystems Ucum",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{terminology-server}}/CodeSystem?name=Ucum",
+									"host": [
+										"{{terminology-server}}"
+									],
+									"path": [
+										"CodeSystem"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "Ucum"
+										}
+									]
+								},
+								"description": "[https://hl7.org/fhir/R4/codesystem.html#search](https://hl7.org/fhir/R4/codesystem.html#search)"
+							},
+							"response": []
+						},
+						{
+							"name": "CodeSystem (definition)",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{terminology-server}}/CodeSystem/ucum-2-1",
+									"host": [
+										"{{terminology-server}}"
+									],
+									"path": [
+										"CodeSystem",
+										"ucum-2-1"
+									]
+								},
+								"description": "[https://hl7.org/fhir/R4/codesystem.html](https://hl7.org/fhir/R4/codesystem.html#search)"
+							},
+							"response": []
+						},
+						{
+							"name": "$lookup Simple Concept",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{terminology-server}}/CodeSystem/$lookup?code=atm&system=http://unitsofmeasure.org",
+									"host": [
+										"{{terminology-server}}"
+									],
+									"path": [
+										"CodeSystem",
+										"$lookup"
+									],
+									"query": [
+										{
+											"key": "code",
+											"value": "atm"
+										},
+										{
+											"key": "system",
+											"value": "http://unitsofmeasure.org"
+										}
+									]
+								},
+								"description": "[https://hl7.org/fhir/R4/codesystem-operation-lookup.html](https://hl7.org/fhir/R4/codesystem-operation-lookup.html)"
+							},
+							"response": []
+						},
+						{
+							"name": "$lookup Complex Concept",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{terminology-server}}/CodeSystem/$lookup?code=409629009&system=http://snomed.info/sct",
+									"host": [
+										"{{terminology-server}}"
+									],
+									"path": [
+										"CodeSystem",
+										"$lookup"
+									],
+									"query": [
+										{
+											"key": "code",
+											"value": "409629009"
+										},
+										{
+											"key": "system",
+											"value": "http://snomed.info/sct"
+										}
+									]
+								},
+								"description": "[https://hl7.org/fhir/R4/codesystem-operation-lookup.html](https://hl7.org/fhir/R4/codesystem-operation-lookup.html)"
+							},
+							"response": []
+						},
+						{
+							"name": "$validate-code",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{terminology-server}}/CodeSystem/$validate-code?code=Bq&url=http://unitsofmeasure.org",
+									"host": [
+										"{{terminology-server}}"
+									],
+									"path": [
+										"CodeSystem",
+										"$validate-code"
+									],
+									"query": [
+										{
+											"key": "code",
+											"value": "Bq"
+										},
+										{
+											"key": "url",
+											"value": "http://unitsofmeasure.org"
+										}
+									]
+								},
+								"description": "[https://hl7.org/fhir/R4/codesystem-operation-validate-code.html](https://hl7.org/fhir/R4/codesystem-operation-validate-code.html)"
+							},
+							"response": []
+						},
+						{
+							"name": "$validate-code With Display",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{terminology-server}}/CodeSystem/$validate-code?code=Bq&url=http://unitsofmeasure.org&display=Becquerel",
+									"host": [
+										"{{terminology-server}}"
+									],
+									"path": [
+										"CodeSystem",
+										"$validate-code"
+									],
+									"query": [
+										{
+											"key": "code",
+											"value": "Bq"
+										},
+										{
+											"key": "url",
+											"value": "http://unitsofmeasure.org"
+										},
+										{
+											"key": "display",
+											"value": "Becquerel"
+										}
+									]
+								},
+								"description": "[https://hl7.org/fhir/R4/codesystem-operation-validate-code.html](https://hl7.org/fhir/R4/codesystem-operation-validate-code.html)"
+							},
+							"response": []
+						},
+						{
+							"name": "$validate-code With Dodgy Display",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{terminology-server}}/CodeSystem/$validate-code?code=Bq&url=http://unitsofmeasure.org&display=Baccarat",
+									"host": [
+										"{{terminology-server}}"
+									],
+									"path": [
+										"CodeSystem",
+										"$validate-code"
+									],
+									"query": [
+										{
+											"key": "code",
+											"value": "Bq"
+										},
+										{
+											"key": "url",
+											"value": "http://unitsofmeasure.org"
+										},
+										{
+											"key": "display",
+											"value": "Baccarat"
+										}
+									]
+								},
+								"description": "[https://hl7.org/fhir/R4/codesystem-operation-validate-code.html](https://hl7.org/fhir/R4/codesystem-operation-validate-code.html)"
+							},
+							"response": []
+						},
+						{
+							"name": "$validate-code With Dodgy Code",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{terminology-server}}/CodeSystem/$validate-code?code=chickens&url=http://unitsofmeasure.org",
+									"host": [
+										"{{terminology-server}}"
+									],
+									"path": [
+										"CodeSystem",
+										"$validate-code"
+									],
+									"query": [
+										{
+											"key": "code",
+											"value": "chickens"
+										},
+										{
+											"key": "url",
+											"value": "http://unitsofmeasure.org"
+										}
+									]
+								},
+								"description": "[https://hl7.org/fhir/R4/codesystem-operation-validate-code.html](https://hl7.org/fhir/R4/codesystem-operation-validate-code.html)"
+							},
+							"response": []
+						},
+						{
+							"name": "$subsumes",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{terminology-server}}/CodeSystem/$subsumes?codeA=237651005&codeB=64572001&system=http://snomed.info/sct",
+									"host": [
+										"{{terminology-server}}"
+									],
+									"path": [
+										"CodeSystem",
+										"$subsumes"
+									],
+									"query": [
+										{
+											"key": "codeA",
+											"value": "237651005",
+											"description": "Insulin resistance - type A"
+										},
+										{
+											"key": "codeB",
+											"value": "64572001",
+											"description": "Disease"
+										},
+										{
+											"key": "system",
+											"value": "http://snomed.info/sct"
+										}
+									]
+								},
+								"description": "[https://hl7.org/fhir/R4/codesystem-operation-validate-code.html](https://hl7.org/fhir/R4/codesystem-operation-validate-code.html)"
+							},
+							"response": []
+						},
+						{
+							"name": "$subsumes negative example",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{terminology-server}}/CodeSystem/$subsumes?codeA=237651005&codeB=410607006&system=http://snomed.info/sct",
+									"host": [
+										"{{terminology-server}}"
+									],
+									"path": [
+										"CodeSystem",
+										"$subsumes"
+									],
+									"query": [
+										{
+											"key": "codeA",
+											"value": "237651005",
+											"description": "Insulin resistance - type A"
+										},
+										{
+											"key": "codeB",
+											"value": "410607006",
+											"description": "Organism"
+										},
+										{
+											"key": "system",
+											"value": "http://snomed.info/sct"
+										}
+									]
+								},
+								"description": "[https://hl7.org/fhir/R4/codesystem-operation-validate-code.html](https://hl7.org/fhir/R4/codesystem-operation-validate-code.html)"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "ConceptMap Examples",
+					"item": [
+						{
+							"name": "List ConceptMaps",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{terminology-server}}/ConceptMap",
+									"host": [
+										"{{terminology-server}}"
+									],
+									"path": [
+										"ConceptMap"
+									]
+								},
+								"description": "[https://hl7.org/fhir/R4/conceptmap.html#search](https://hl7.org/fhir/R4/conceptmap.html#search)"
+							},
+							"response": []
+						},
+						{
+							"name": "ConceptMap (definition)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{terminology-server}}/ConceptMap/train2demo456",
+									"host": [
+										"{{terminology-server}}"
+									],
+									"path": [
+										"ConceptMap",
+										"train2demo456"
+									]
+								},
+								"description": "[https://hl7.org/fhir/R4/conceptmap.html](https://hl7.org/fhir/R4/conceptmap.html)"
+							},
+							"response": []
+						},
+						{
+							"name": "ConceptMap $translate",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{terminology-server}}/ConceptMap/$translate?code=102&system=http://train2.demo.456/cs&target=http://snomed.info/sct",
+									"host": [
+										"{{terminology-server}}"
+									],
+									"path": [
+										"ConceptMap",
+										"$translate"
+									],
+									"query": [
+										{
+											"key": "code",
+											"value": "102"
+										},
+										{
+											"key": "system",
+											"value": "http://train2.demo.456/cs"
+										},
+										{
+											"key": "target",
+											"value": "http://snomed.info/sct"
+										}
+									]
+								},
+								"description": "[https://hl7.org/fhir/R4/conceptmap-operation-translate.html](https://hl7.org/fhir/R4/conceptmap-operation-translate.html)"
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Content Specific Examples",
+			"item": [
+				{
+					"name": "SNOMED Examples",
+					"item": [
+						{
+							"name": "Implicit ValueSet All Concepts $expand",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{terminology-server}}/ValueSet/$expand?url=http://snomed.info/sct?fhir_vs&filter=typh&includeDesignations=true",
+									"host": [
+										"{{terminology-server}}"
+									],
+									"path": [
+										"ValueSet",
+										"$expand"
+									],
+									"query": [
+										{
+											"key": "url",
+											"value": "http://snomed.info/sct?fhir_vs"
+										},
+										{
+											"key": "filter",
+											"value": "typh"
+										},
+										{
+											"key": "includeDesignations",
+											"value": "true"
+										}
+									]
+								},
+								"description": "[https://hl7.org/fhir/R4/valueset-operation-expand.html](https://hl7.org/fhir/R4/valueset-operation-expand.html)"
+							},
+							"response": []
+						},
+						{
+							"name": "Implicit ValueSet isa $expand",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{terminology-server}}/ValueSet/$expand?url=http://snomed.info/sct?fhir_vs=isa/762766007&filter=sod&includeDesignations=true",
+									"host": [
+										"{{terminology-server}}"
+									],
+									"path": [
+										"ValueSet",
+										"$expand"
+									],
+									"query": [
+										{
+											"key": "url",
+											"value": "http://snomed.info/sct?fhir_vs=isa/762766007",
+											"description": "Is a 'edible substance'"
+										},
+										{
+											"key": "filter",
+											"value": "sod"
+										},
+										{
+											"key": "includeDesignations",
+											"value": "true"
+										}
+									]
+								},
+								"description": "[https://hl7.org/fhir/R4/valueset-operation-expand.html](https://hl7.org/fhir/R4/valueset-operation-expand.html)"
+							},
+							"response": []
+						},
+						{
+							"name": "Implicit ValueSet isa $expand Specific Version",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{terminology-server}}/ValueSet/$expand?url=http://snomed.info/sct/20611000087101/version/20230930?fhir_vs=isa/762766007&filter=sod&includeDesignations=true",
+									"host": [
+										"{{terminology-server}}"
+									],
+									"path": [
+										"ValueSet",
+										"$expand"
+									],
+									"query": [
+										{
+											"key": "url",
+											"value": "http://snomed.info/sct/20611000087101/version/20230930?fhir_vs=isa/762766007",
+											"description": "Is a 'edible substance'"
+										},
+										{
+											"key": "filter",
+											"value": "sod"
+										},
+										{
+											"key": "includeDesignations",
+											"value": "true"
+										}
+									]
+								},
+								"description": "[https://hl7.org/fhir/R4/valueset-operation-expand.html](https://hl7.org/fhir/R4/valueset-operation-expand.html)"
+							},
+							"response": []
+						},
+						{
+							"name": "Implicit ValueSet defined refsets $expand",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{terminology-server}}/ValueSet/$expand?url=http://snomed.info/sct?fhir_vs=refset&filter=imm&includeDesignations=true",
+									"host": [
+										"{{terminology-server}}"
+									],
+									"path": [
+										"ValueSet",
+										"$expand"
+									],
+									"query": [
+										{
+											"key": "url",
+											"value": "http://snomed.info/sct?fhir_vs=refset"
+										},
+										{
+											"key": "filter",
+											"value": "imm"
+										},
+										{
+											"key": "includeDesignations",
+											"value": "true"
+										}
+									]
+								},
+								"description": "[https://hl7.org/fhir/R4/valueset-operation-expand.html](https://hl7.org/fhir/R4/valueset-operation-expand.html)"
+							},
+							"response": []
+						},
+						{
+							"name": "Implicit ValueSet refset members $expand",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{terminology-server}}/ValueSet/$expand?url=http://snomed.info/sct?fhir_vs=refset/23611000087109&includeDesignations=true",
+									"host": [
+										"{{terminology-server}}"
+									],
+									"path": [
+										"ValueSet",
+										"$expand"
+									],
+									"query": [
+										{
+											"key": "url",
+											"value": "http://snomed.info/sct?fhir_vs=refset/23611000087109",
+											"description": "Act no immunization reason reference set"
+										},
+										{
+											"key": "includeDesignations",
+											"value": "true"
+										}
+									]
+								},
+								"description": "[https://hl7.org/fhir/R4/valueset-operation-expand.html](https://hl7.org/fhir/R4/valueset-operation-expand.html)"
+							},
+							"response": []
+						},
+						{
+							"name": "Implicit ValueSet ECL $expand",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{terminology-server}}/ValueSet/$expand?url=http://snomed.info/sct?fhir_vs=ecl/( << 73211009 ) MINUS ( (<< 765205004 OR << 11687002 ) )&includeDesignations=true",
+									"host": [
+										"{{terminology-server}}"
+									],
+									"path": [
+										"ValueSet",
+										"$expand"
+									],
+									"query": [
+										{
+											"key": "url",
+											"value": "http://snomed.info/sct?fhir_vs=ecl/( << 73211009 ) MINUS ( (<< 765205004 OR << 11687002 ) )",
+											"description": "(\n  << 73211009|Diabetes mellitus|\n) MINUS (\n  (<< 765205004|Disorder in remission| OR << 11687002|Gestational diabetes mellitus|)\n)"
+										},
+										{
+											"key": "includeDesignations",
+											"value": "true"
+										}
+									]
+								},
+								"description": "[https://hl7.org/fhir/R4/valueset-operation-expand.html](https://hl7.org/fhir/R4/valueset-operation-expand.html)"
+							},
+							"response": []
+						},
+						{
+							"name": "Implicit ConceptMap SAME AS $translate",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{terminology-server}}/ConceptMap/$translate?url=http://snomed.info/sct?fhir_cm=900000000000527005&code=275918005&system=http://snomed.info/sct",
+									"host": [
+										"{{terminology-server}}"
+									],
+									"path": [
+										"ConceptMap",
+										"$translate"
+									],
+									"query": [
+										{
+											"key": "url",
+											"value": "http://snomed.info/sct?fhir_cm=900000000000527005",
+											"description": "SAME AS"
+										},
+										{
+											"key": "code",
+											"value": "275918005"
+										},
+										{
+											"key": "system",
+											"value": "http://snomed.info/sct"
+										}
+									]
+								},
+								"description": "[https://hl7.org/fhir/R4/conceptmap-operation-translate.html](https://hl7.org/fhir/R4/conceptmap-operation-translate.html)"
+							},
+							"response": []
+						},
+						{
+							"name": "Implicit ConceptMap REPLACED BY $translate",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{terminology-server}}/ConceptMap/$translate?url=http://snomed.info/sct?fhir_cm=900000000000526001&code=190484000&system=http://snomed.info/sct",
+									"host": [
+										"{{terminology-server}}"
+									],
+									"path": [
+										"ConceptMap",
+										"$translate"
+									],
+									"query": [
+										{
+											"key": "url",
+											"value": "http://snomed.info/sct?fhir_cm=900000000000526001",
+											"description": "REPLACED BY"
+										},
+										{
+											"key": "code",
+											"value": "190484000"
+										},
+										{
+											"key": "system",
+											"value": "http://snomed.info/sct"
+										}
+									]
+								},
+								"description": "[https://hl7.org/fhir/R4/conceptmap-operation-translate.html](https://hl7.org/fhir/R4/conceptmap-operation-translate.html)"
+							},
+							"response": []
+						},
+						{
+							"name": "ValueSet $expand Inactive Concepts Only",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"resourceType\": \"Parameters\",\n    \"parameter\": [\n        {\n            \"name\": \"valueSet\",\n            \"resource\": {\n                \"resourceType\": \"ValueSet\",\n                \"compose\": {\n                    \"inactive\": true,\n                    \"include\": [\n                        {\n                            \"system\": \"http://snomed.info/sct\",\n                            \"filter\": [\n                                {\n                                    \"property\": \"inactive\",\n                                    \"op\": \"=\",\n                                    \"value\": \"true\"\n                                }\n                            ]\n                        }\n                    ]\n                }\n            }\n        },\n        {\n            \"name\": \"activeOnly\",\n            \"valueBoolean\": false\n        },\n        {\n            \"name\": \"count\",\n            \"valueInteger\": \"2000\"\n        }\n\n\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{terminology-server}}/ValueSet/$expand",
+									"host": [
+										"{{terminology-server}}"
+									],
+									"path": [
+										"ValueSet",
+										"$expand"
+									]
+								},
+								"description": "[https://hl7.org/fhir/R4/valueset-operation-expand.html](https://hl7.org/fhir/R4/valueset-operation-expand.html)"
+							},
+							"response": []
+						}
+					],
+					"description": "[https://terminology.hl7.org/SNOMEDCT.html](https://terminology.hl7.org/SNOMEDCT.html)"
+				},
+				{
+					"name": "PCLOCD Examples",
+					"item": [
+						{
+							"name": "ValueSet $expand pCLOCD",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{terminology-server}}/ValueSet/$expand?url=https://fhir.infoway-inforoute.ca/CodeSystem/pCLOCD/vs&count=100",
+									"host": [
+										"{{terminology-server}}"
+									],
+									"path": [
+										"ValueSet",
+										"$expand"
+									],
+									"query": [
+										{
+											"key": "url",
+											"value": "https://fhir.infoway-inforoute.ca/CodeSystem/pCLOCD/vs"
+										},
+										{
+											"key": "count",
+											"value": "100"
+										}
+									]
+								},
+								"description": "[https://hl7.org/fhir/R4/valueset-operation-expand.html](https://hl7.org/fhir/R4/valueset-operation-expand.html)"
+							},
+							"response": []
+						},
+						{
+							"name": "ValueSet $expand pCLOCD French Display",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{terminology-server}}/ValueSet/$expand?url=https://fhir.infoway-inforoute.ca/CodeSystem/pCLOCD/vs&count=100&displayLanguage=fr",
+									"host": [
+										"{{terminology-server}}"
+									],
+									"path": [
+										"ValueSet",
+										"$expand"
+									],
+									"query": [
+										{
+											"key": "url",
+											"value": "https://fhir.infoway-inforoute.ca/CodeSystem/pCLOCD/vs"
+										},
+										{
+											"key": "count",
+											"value": "100"
+										},
+										{
+											"key": "displayLanguage",
+											"value": "fr"
+										}
+									]
+								},
+								"description": "[https://hl7.org/fhir/R4/valueset-operation-expand.html](https://hl7.org/fhir/R4/valueset-operation-expand.html)"
+							},
+							"response": []
+						},
+						{
+							"name": "ValueSet $expand pCLOCD All Properties and Designations",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{terminology-server}}/ValueSet/$expand?url=https://fhir.infoway-inforoute.ca/CodeSystem/pCLOCD/vs&count=100&property=*&includeDesignations=true",
+									"host": [
+										"{{terminology-server}}"
+									],
+									"path": [
+										"ValueSet",
+										"$expand"
+									],
+									"query": [
+										{
+											"key": "url",
+											"value": "https://fhir.infoway-inforoute.ca/CodeSystem/pCLOCD/vs"
+										},
+										{
+											"key": "count",
+											"value": "100"
+										},
+										{
+											"key": "property",
+											"value": "*"
+										},
+										{
+											"key": "includeDesignations",
+											"value": "true"
+										}
+									]
+								},
+								"description": "[https://hl7.org/fhir/R4/valueset-operation-expand.html](https://hl7.org/fhir/R4/valueset-operation-expand.html)"
+							},
+							"response": []
+						},
+						{
+							"name": "ValueSet $expand specify Class=ALLERGY",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"resourceType\": \"Parameters\",\n    \"parameter\": [\n        {\n            \"name\": \"valueSet\",\n            \"resource\": {\n                \"resourceType\": \"ValueSet\",\n                \"compose\": {\n                    \"inactive\": true,\n                    \"include\": [\n                        {\n                            \"system\": \"https://fhir.infoway-inforoute.ca/CodeSystem/pCLOCD\",\n                            \"filter\": [\n                                {\n                                    \"property\": \"CLASS\",\n                                    \"op\": \"=\",\n                                    \"value\": \"LP7756-2\"\n                                }\n                            ]\n                        }\n                    ]\n                }\n            }\n        },\n        {\n            \"name\": \"activeOnly\",\n            \"valueBoolean\": false\n        },\n        {\n            \"name\": \"count\",\n            \"valueInteger\": \"2000\"\n        },\n        {\n            \"name\": \"includeDesignations\",\n            \"valueBoolean\": true\n        }\n\n\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{terminology-server}}/ValueSet/$expand",
+									"host": [
+										"{{terminology-server}}"
+									],
+									"path": [
+										"ValueSet",
+										"$expand"
+									]
+								},
+								"description": "[https://hl7.org/fhir/R4/valueset-operation-expand.html](https://hl7.org/fhir/R4/valueset-operation-expand.html)"
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									"var template = `",
+									"<style type=\"text/css\">",
+									"    table {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse; box-sizing: border-box;}",
+									"    th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px !important;border-style: solid;border-color: #87ceeb;text-align:left;}",
+									"    tr {background-color:#ffffff;}",
+									"    td {font-size:14px;border-width: 1px;padding: 8px !important;border-style: solid;border-color: #87ceeb;}",
+									"    tr:hover {background-color:#e0ffff;}",
+									"</style>",
+									"    ",
+									"<table border=\"1\">",
+									"    <tr>",
+									"        <th>Concept Code</th>",
+									"        <th>English Display Name</th>",
+									"        <th>French Display Name</th>",
+									"        <th>LONG_COMMON_NAME</th>",
+									"    </tr>",
+									"    ",
+									"    {{#each response.concepts}}",
+									"        <tr>",
+									"            <td>{{code}}</td>",
+									"            <td>{{display}}</td>",
+									"            <td>{{displayfr}}</td>",
+									"            <td>{{LONG_COMMON_NAME}}</td>",
+									"        </tr>",
+									"    {{/each}}",
+									"</table>",
+									"`;",
+									"",
+									"var templateList = `",
+									"<style type=\"text/css\">",
+									"    table {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse; box-sizing: border-box;}",
+									"    th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px !important;border-style: solid;border-color: #87ceeb;text-align:left;}",
+									"    tr {background-color:#ffffff;}",
+									"    td {font-size:14px;border-width: 1px;padding: 8px !important;border-style: solid;border-color: #87ceeb;}",
+									"    tr:hover {background-color:#e0ffff;}",
+									"</style>",
+									"    ",
+									"<table border=\"1\">",
+									"    <tr>",
+									"        <th>name</th>",
+									"        <th>version</th>",
+									"        <th>url</th>",
+									"        <th>id</th>",
+									"    </tr>",
+									"    ",
+									"    {{#each response.entry}}",
+									"        <tr>",
+									"            <td>{{resource.name}}</td>",
+									"            <td>{{resource.version}}</td>",
+									"            <td>{{resource.url}}</td>",
+									"            <td>{{resource.id}}</td>",
+									"        </tr>",
+									"    {{/each}}",
+									"</table>",
+									"`;",
+									"",
+									"var templateParameters = `",
+									"<style type=\"text/css\">",
+									"    table {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse; box-sizing: border-box;}",
+									"    th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px !important;border-style: solid;border-color: #87ceeb;text-align:left;}",
+									"    tr {background-color:#ffffff;}",
+									"    td {font-size:14px;border-width: 1px;padding: 8px !important;border-style: solid;border-color: #87ceeb;}",
+									"    tr:hover {background-color:#e0ffff;}",
+									"</style>",
+									"",
+									"<table border=\"1\">",
+									"    <tr>",
+									"        <th>name</th>",
+									"        <th>value</th>",
+									"    </tr>",
+									"    ",
+									"    {{#each response.parameter}}",
+									"        <tr>",
+									"            <td>{{name}}</td>",
+									"            <td>{{valueBoolean}}{{valueCode}}{{valueUri}}{{valueString}}{{valueDecimal}}{{part.0.valueCode}}{{part.0.valueCoding.code}}{{#if part.[1]}}, {{/if}}{{part.1.valueCoding.code}}{{part.1.valueBoolean}}{{part.1.valueCode}}{{part.1.valueUri}}{{part.1.valueString}}{{part.1.valueDecimal}}{{#if part.[2]}}, {{/if}}{{part.2.valueBoolean}}{{part.2.valueCode}}{{part.2.valueUri}}{{part.2.valueString}}{{part.2.valueDecimal}}</td>",
+									"        </tr>",
+									"    {{/each}}",
+									"</table>",
+									"`;",
+									"",
+									"",
+									"",
+									"",
+									"var templateCodeSystemConcepts = `",
+									"<style type=\"text/css\">",
+									"    table {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse; box-sizing: border-box;}",
+									"    th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px !important;border-style: solid;border-color: #87ceeb;text-align:left;}",
+									"    tr {background-color:#ffffff;}",
+									"    td {font-size:14px;border-width: 1px;padding: 8px !important;border-style: solid;border-color: #87ceeb;}",
+									"    tr:hover {background-color:#e0ffff;}",
+									"</style>",
+									"",
+									"",
+									"<table border=\"1\">",
+									"    <tr>",
+									"        <th>field</th>",
+									"        <th>value</th>",
+									"    </tr>",
+									"    <tr>",
+									"        <td>url</td>",
+									"        <td>{{response.url}}</td>",
+									"    </tr>",
+									"    <tr>",
+									"        <td>version</td>",
+									"        <td>{{response.version}}</td>",
+									"    </tr>",
+									"    <tr>",
+									"        <td>name</td>",
+									"        <td>{{response.name}}</td>",
+									"    </tr>",
+									"    <tr>",
+									"        <td>title</td>",
+									"        <td>{{response.title}}</td>",
+									"    </tr>",
+									"    <tr>",
+									"        <td>status</td>",
+									"        <td>{{response.status}}</td>",
+									"    </tr>",
+									"    <tr>",
+									"        <td>experimental</td>",
+									"        <td>{{response.experimental}}</td>",
+									"    </tr>",
+									"    <tr>",
+									"        <td>date</td>",
+									"        <td>{{response.date}}</td>",
+									"    </tr>",
+									"    <tr>",
+									"        <td>publisher</td>",
+									"        <td>{{response.publisher}}</td>",
+									"    </tr>",
+									"    <tr>",
+									"        <td>description</td>",
+									"        <td>{{response.description}}</td>",
+									"    </tr>",
+									"    <tr>",
+									"        <td>valueSet</td>",
+									"        <td>{{response.valueSet}}</td>",
+									"    </tr>",
+									"    <tr>",
+									"        <td>content</td>",
+									"        <td>{{response.content}}</td>",
+									"    </tr>",
+									"    <tr>",
+									"        <td>count</td>",
+									"        <td>{{response.count}}</td>",
+									"    </tr>",
+									"</table>",
+									"<br>",
+									"",
+									"<table border=\"1\">",
+									"    <tr>",
+									"        <th>code</th>",
+									"        <th>display</th>",
+									"    </tr>",
+									"    ",
+									"    {{#each response.concept}}",
+									"        <tr>",
+									"            <td>{{code}}</td>",
+									"            <td>{{display}}</td>",
+									"        </tr>",
+									"    {{/each}}",
+									"</table>",
+									"`;",
+									"",
+									"const response2 = JSON.parse(responseBody);",
+									"",
+									"var visualJSON = {",
+									"    concepts: []",
+									"};",
+									"",
+									"if(response2.expansion != null)",
+									"{",
+									"    for(let i = 0; i < response2.expansion.contains.length; i++) {",
+									"        let obj = response2.expansion.contains[i];",
+									"        var frenchPreferred = \"\";",
+									"        var fullySpecified = \"\";",
+									"        if(obj.designation != null)",
+									"        {",
+									"            for(let j = 0; j < obj.designation.length; j++)",
+									"            {",
+									"                let des = obj.designation[j];",
+									"                if(des.language == \"fr\" && des.use.code == \"preferredForLanguage\")",
+									"                {",
+									"                    frenchPreferred = des.value;",
+									"                }",
+									"                else if(des.use.code == \"LONG_COMMON_NAME\")",
+									"                {",
+									"                    lcn = des.value;",
+									"                }",
+									"            }",
+									"        }",
+									"        visualJSON.concepts.push({ ",
+									"            \"system\"  : obj.system,",
+									"            \"code\"    : obj.code,",
+									"            \"display\" : obj.display ,",
+									"            \"displayfr\" : frenchPreferred,",
+									"            \"LONG_COMMON_NAME\" : lcn",
+									"        });",
+									"    }",
+									"    pm.visualizer.set(template, {",
+									"    response: visualJSON",
+									"});",
+									"}",
+									"else if(response2.resourceType == \"CodeSystem\")",
+									"{",
+									"    pm.visualizer.set(templateCodeSystemConcepts, {",
+									"        response: JSON.parse(responseBody)",
+									"    });    ",
+									"}",
+									"else if(response2.resourceType == \"Parameters\")",
+									"{",
+									"    pm.visualizer.set(templateParameters, {",
+									"        response: JSON.parse(responseBody)",
+									"    });    ",
+									"}",
+									"else",
+									"{",
+									"    pm.visualizer.set(templateList, {",
+									"    response: JSON.parse(responseBody)",
+									"    });",
+									"",
+									"}",
+									"// Pass our template and response data to the Postman visualizer to render it in the \"Visualize\" view",
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Subset Examples",
+					"item": [
+						{
+							"name": "antigencode $expand",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{terminology-server}}/ValueSet/$expand?url=https://fhir.infoway-inforoute.ca/ValueSet/antigencode&includeDesignations=true&filter",
+									"host": [
+										"{{terminology-server}}"
+									],
+									"path": [
+										"ValueSet",
+										"$expand"
+									],
+									"query": [
+										{
+											"key": "url",
+											"value": "https://fhir.infoway-inforoute.ca/ValueSet/antigencode"
+										},
+										{
+											"key": "includeDesignations",
+											"value": "true"
+										},
+										{
+											"key": "filter",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "antigencode $expand French display",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Define a handlebars template which renders the response data in a table",
+											"// We define a table and use handlebars `{{#each}}` syntax to map over the response data",
+											"// We can include custom CSS to style the table",
+											"var template = `",
+											"<style type=\"text/css\">",
+											"    table {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse; box-sizing: border-box;}",
+											"    th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px !important;border-style: solid;border-color: #87ceeb;text-align:left;}",
+											"    tr {background-color:#ffffff;}",
+											"    td {font-size:14px;border-width: 1px;padding: 8px !important;border-style: solid;border-color: #87ceeb;}",
+											"    tr:hover {background-color:#e0ffff;}",
+											"</style>",
+											"    ",
+											"<table border=\"1\">",
+											"    <tr>",
+											"        <th>conceptId</th>",
+											"        <th>display</th>",
+											"        <th>url</th>",
+											"        <th>designations</th>",
+											"    </tr>",
+											"    ",
+											"    {{#each response.expansion.contains}}",
+											"        <tr>",
+											"            <td>{{code}}</td>",
+											"            <td>{{display}}</td>",
+											"            <td>{{system}}</td>",
+											"            <td>    <table border=\"1\">",
+											"                        <tr>",
+											"                            <th>language</th>",
+											"                            <th>value</th>",
+											"                            <th>use</th>",
+											"                        </tr>",
+											"                        ",
+											"                        {{#each designation}}",
+											"                            <tr>",
+											"                                <td>{{language}}</td>",
+											"                                <td>{{value}}</td>",
+											"                                <td>{{use.display}}</td>",
+											"                            </tr>",
+											"                        {{/each}}",
+											"                    </table>",
+											"                </td>",
+											"        </tr>",
+											"    {{/each}}",
+											"</table>",
+											"`;",
+											"",
+											"// Pass our template and response data to the Postman visualizer to render it in the \"Visualize\" view",
+											"pm.visualizer.set(template, {",
+											"    response: JSON.parse(responseBody)",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{terminology-server}}/ValueSet/$expand?url=https://fhir.infoway-inforoute.ca/ValueSet/antigencode&includeDesignations=true&displayLanguage=fr",
+									"host": [
+										"{{terminology-server}}"
+									],
+									"path": [
+										"ValueSet",
+										"$expand"
+									],
+									"query": [
+										{
+											"key": "url",
+											"value": "https://fhir.infoway-inforoute.ca/ValueSet/antigencode"
+										},
+										{
+											"key": "includeDesignations",
+											"value": "true"
+										},
+										{
+											"key": "displayLanguage",
+											"value": "fr"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "prescriptiondiscontinuereason $expand",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{terminology-server}}/ValueSet/$expand?url=https://fhir.infoway-inforoute.ca/ValueSet/prescriptiondiscontinuereason&includeDesignations=true&filter",
+									"host": [
+										"{{terminology-server}}"
+									],
+									"path": [
+										"ValueSet",
+										"$expand"
+									],
+									"query": [
+										{
+											"key": "url",
+											"value": "https://fhir.infoway-inforoute.ca/ValueSet/prescriptiondiscontinuereason"
+										},
+										{
+											"key": "includeDesignations",
+											"value": "true"
+										},
+										{
+											"key": "filter",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "acknowledgementcondition $expand",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{terminology-server}}/ValueSet/$expand?url=https://fhir.infoway-inforoute.ca/ValueSet/acknowledgementcondition&filter",
+									"host": [
+										"{{terminology-server}}"
+									],
+									"path": [
+										"ValueSet",
+										"$expand"
+									],
+									"query": [
+										{
+											"key": "url",
+											"value": "https://fhir.infoway-inforoute.ca/ValueSet/acknowledgementcondition"
+										},
+										{
+											"key": "filter",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							"var template = `",
+							"<style type=\"text/css\">",
+							"    table {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse; box-sizing: border-box;}",
+							"    th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px !important;border-style: solid;border-color: #87ceeb;text-align:left;}",
+							"    tr {background-color:#ffffff;}",
+							"    td {font-size:14px;border-width: 1px;padding: 8px !important;border-style: solid;border-color: #87ceeb;}",
+							"    tr:hover {background-color:#e0ffff;}",
+							"</style>",
+							"    ",
+							"<table border=\"1\">",
+							"    <tr>",
+							"        <th>Concept Code</th>",
+							"        <th>English Display Name</th>",
+							"        <th>French Display Name</th>",
+							"        <th>Concept Name</th>",
+							"    </tr>",
+							"    ",
+							"    {{#each response.concepts}}",
+							"        <tr>",
+							"            <td>{{code}}</td>",
+							"            <td>{{display}}</td>",
+							"            <td>{{displayfr}}</td>",
+							"            <td>{{fullySpecified}}</td>",
+							"        </tr>",
+							"    {{/each}}",
+							"</table>",
+							"`;",
+							"const response2 = JSON.parse(responseBody);",
+							"",
+							"var visualJSON = {",
+							"    concepts: []",
+							"};",
+							"",
+							"for(let i = 0; i < response2.expansion.contains.length; i++) {",
+							"    let obj = response2.expansion.contains[i];",
+							"    var frenchPreferred = \"\";",
+							"    var fullySpecified = \"\";",
+							"    if(obj.designation != null)",
+							"    {",
+							"        for(let j = 0; j < obj.designation.length; j++)",
+							"        {",
+							"            let des = obj.designation[j];",
+							"            if(des.language == \"fr-x-sctlang-20581000-087109\" && des.use.code == \"preferredForLanguage\")",
+							"            {",
+							"                frenchPreferred = des.value;",
+							"            }",
+							"            else if(des.use.code == \"900000000000003001\")",
+							"            {",
+							"                fullySpecified = des.value;",
+							"            }",
+							"        }",
+							"    }",
+							"    visualJSON.concepts.push({ ",
+							"        \"system\"  : obj.system,",
+							"        \"code\"    : obj.code,",
+							"        \"display\" : obj.display ,",
+							"        \"displayfr\" : frenchPreferred,",
+							"        \"fullySpecified\" : fullySpecified",
+							"    });",
+							"}",
+							"// Pass our template and response data to the Postman visualizer to render it in the \"Visualize\" view",
+							"pm.visualizer.set(template, {",
+							"    response: visualJSON",
+							"});"
+						]
+					}
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "oauth2",
+		"oauth2": [
+			{
+				"key": "accessTokenUrl",
+				"value": "https://terminologystandardsservice.ca/authorisation/auth/realms/terminology/protocol/openid-connect/token",
+				"type": "string"
+			},
+			{
+				"key": "refreshTokenUrl",
+				"value": "https://terminologystandardsservice.ca/authorisation/auth/realms/terminology/protocol/openid-connect/token",
+				"type": "string"
+			},
+			{
+				"key": "authUrl",
+				"value": "https://terminologystandardsservice.ca/authorisation/auth/realms/terminology/protocol/openid-connect/auth",
+				"type": "string"
+			},
+			{
+				"key": "clientId",
+				"value": "snapper",
+				"type": "string"
+			},
+			{
+				"key": "client_authentication",
+				"value": "body",
+				"type": "string"
+			},
+			{
+				"key": "addTokenTo",
+				"value": "header",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"var template = `",
+					"<style type=\"text/css\">",
+					"    table {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse; box-sizing: border-box;}",
+					"    th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px !important;border-style: solid;border-color: #87ceeb;text-align:left;}",
+					"    tr {background-color:#ffffff;}",
+					"    td {font-size:14px;border-width: 1px;padding: 8px !important;border-style: solid;border-color: #87ceeb;}",
+					"    tr:hover {background-color:#e0ffff;}",
+					"</style>",
+					"    ",
+					"<table border=\"1\">",
+					"    <tr>",
+					"        <th>Concept Code</th>",
+					"        <th>English Display Name</th>",
+					"        <th>French Display Name</th>",
+					"        <th>Concept Name</th>",
+					"    </tr>",
+					"    ",
+					"    {{#each response.concepts}}",
+					"        <tr>",
+					"            <td>{{code}}</td>",
+					"            <td>{{display}}</td>",
+					"            <td>{{displayfr}}</td>",
+					"            <td>{{fullySpecified}}</td>",
+					"        </tr>",
+					"    {{/each}}",
+					"</table>",
+					"`;",
+					"",
+					"var templateList = `",
+					"<style type=\"text/css\">",
+					"    table {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse; box-sizing: border-box;}",
+					"    th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px !important;border-style: solid;border-color: #87ceeb;text-align:left;}",
+					"    tr {background-color:#ffffff;}",
+					"    td {font-size:14px;border-width: 1px;padding: 8px !important;border-style: solid;border-color: #87ceeb;}",
+					"    tr:hover {background-color:#e0ffff;}",
+					"</style>",
+					"    ",
+					"<table border=\"1\">",
+					"    <tr>",
+					"        <th>name</th>",
+					"        <th>version</th>",
+					"        <th>url</th>",
+					"        <th>id</th>",
+					"    </tr>",
+					"    ",
+					"    {{#each response.entry}}",
+					"        <tr>",
+					"            <td>{{resource.name}}</td>",
+					"            <td>{{resource.version}}</td>",
+					"            <td>{{resource.url}}</td>",
+					"            <td>{{resource.id}}</td>",
+					"        </tr>",
+					"    {{/each}}",
+					"</table>",
+					"`;",
+					"",
+					"var templateParameters = `",
+					"<style type=\"text/css\">",
+					"    table {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse; box-sizing: border-box;}",
+					"    th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px !important;border-style: solid;border-color: #87ceeb;text-align:left;}",
+					"    tr {background-color:#ffffff;}",
+					"    td {font-size:14px;border-width: 1px;padding: 8px !important;border-style: solid;border-color: #87ceeb;}",
+					"    tr:hover {background-color:#e0ffff;}",
+					"</style>",
+					"",
+					"<table border=\"1\">",
+					"    <tr>",
+					"        <th>name</th>",
+					"        <th>value</th>",
+					"    </tr>",
+					"    ",
+					"    {{#each response.parameter}}",
+					"        <tr>",
+					"            <td>{{name}}</td>",
+					"            <td>{{valueBoolean}}{{valueCode}}{{valueUri}}{{valueString}}{{valueDecimal}}{{part.0.valueCode}}{{part.0.valueCoding.code}}{{#if part.[1]}}, {{/if}}{{part.1.valueCoding.code}}{{part.1.valueBoolean}}{{part.1.valueCode}}{{part.1.valueUri}}{{part.1.valueString}}{{part.1.valueDecimal}}{{#if part.[2]}}, {{/if}}{{part.2.valueBoolean}}{{part.2.valueCode}}{{part.2.valueUri}}{{part.2.valueString}}{{part.2.valueDecimal}}</td>",
+					"        </tr>",
+					"    {{/each}}",
+					"</table>",
+					"`;",
+					"",
+					"",
+					"",
+					"",
+					"var templateCodeSystemConcepts = `",
+					"<style type=\"text/css\">",
+					"    table {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse; box-sizing: border-box;}",
+					"    th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px !important;border-style: solid;border-color: #87ceeb;text-align:left;}",
+					"    tr {background-color:#ffffff;}",
+					"    td {font-size:14px;border-width: 1px;padding: 8px !important;border-style: solid;border-color: #87ceeb;}",
+					"    tr:hover {background-color:#e0ffff;}",
+					"</style>",
+					"",
+					"",
+					"<table border=\"1\">",
+					"    <tr>",
+					"        <th>field</th>",
+					"        <th>value</th>",
+					"    </tr>",
+					"    <tr>",
+					"        <td>url</td>",
+					"        <td>{{response.url}}</td>",
+					"    </tr>",
+					"    <tr>",
+					"        <td>version</td>",
+					"        <td>{{response.version}}</td>",
+					"    </tr>",
+					"    <tr>",
+					"        <td>name</td>",
+					"        <td>{{response.name}}</td>",
+					"    </tr>",
+					"    <tr>",
+					"        <td>title</td>",
+					"        <td>{{response.title}}</td>",
+					"    </tr>",
+					"    <tr>",
+					"        <td>status</td>",
+					"        <td>{{response.status}}</td>",
+					"    </tr>",
+					"    <tr>",
+					"        <td>experimental</td>",
+					"        <td>{{response.experimental}}</td>",
+					"    </tr>",
+					"    <tr>",
+					"        <td>date</td>",
+					"        <td>{{response.date}}</td>",
+					"    </tr>",
+					"    <tr>",
+					"        <td>publisher</td>",
+					"        <td>{{response.publisher}}</td>",
+					"    </tr>",
+					"    <tr>",
+					"        <td>description</td>",
+					"        <td>{{response.description}}</td>",
+					"    </tr>",
+					"    <tr>",
+					"        <td>valueSet</td>",
+					"        <td>{{response.valueSet}}</td>",
+					"    </tr>",
+					"    <tr>",
+					"        <td>content</td>",
+					"        <td>{{response.content}}</td>",
+					"    </tr>",
+					"    <tr>",
+					"        <td>count</td>",
+					"        <td>{{response.count}}</td>",
+					"    </tr>",
+					"</table>",
+					"<br>",
+					"",
+					"<table border=\"1\">",
+					"    <tr>",
+					"        <th>code</th>",
+					"        <th>display</th>",
+					"    </tr>",
+					"    ",
+					"    {{#each response.concept}}",
+					"        <tr>",
+					"            <td>{{code}}</td>",
+					"            <td>{{display}}</td>",
+					"        </tr>",
+					"    {{/each}}",
+					"</table>",
+					"`;",
+					"",
+					"const response2 = JSON.parse(responseBody);",
+					"",
+					"var visualJSON = {",
+					"    concepts: []",
+					"};",
+					"",
+					"if(response2.expansion != null)",
+					"{",
+					"    for(let i = 0; i < response2.expansion.contains.length; i++) {",
+					"        let obj = response2.expansion.contains[i];",
+					"        var frenchPreferred = \"\";",
+					"        var fullySpecified = \"\";",
+					"        if(obj.designation != null)",
+					"        {",
+					"            for(let j = 0; j < obj.designation.length; j++)",
+					"            {",
+					"                let des = obj.designation[j];",
+					"                if(des.language == \"fr-x-sctlang-20581000-087109\" && des.use.code == \"preferredForLanguage\")",
+					"                {",
+					"                    frenchPreferred = des.value;",
+					"                }",
+					"                else if(des.use.code == \"900000000000003001\")",
+					"                {",
+					"                    fullySpecified = des.value;",
+					"                }",
+					"            }",
+					"        }",
+					"        visualJSON.concepts.push({ ",
+					"            \"system\"  : obj.system,",
+					"            \"code\"    : obj.code,",
+					"            \"display\" : obj.display ,",
+					"            \"displayfr\" : frenchPreferred,",
+					"            \"fullySpecified\" : fullySpecified",
+					"        });",
+					"    }",
+					"    pm.visualizer.set(template, {",
+					"    response: visualJSON",
+					"});",
+					"}",
+					"else if(response2.resourceType == \"CodeSystem\")",
+					"{",
+					"    pm.visualizer.set(templateCodeSystemConcepts, {",
+					"        response: JSON.parse(responseBody)",
+					"    });    ",
+					"}",
+					"else if(response2.resourceType == \"Parameters\")",
+					"{",
+					"    pm.visualizer.set(templateParameters, {",
+					"        response: JSON.parse(responseBody)",
+					"    });    ",
+					"}",
+					"else",
+					"{",
+					"    pm.visualizer.set(templateList, {",
+					"    response: JSON.parse(responseBody)",
+					"    });",
+					"",
+					"}",
+					"// Pass our template and response data to the Postman visualizer to render it in the \"Visualize\" view",
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "terminology-server",
+			"value": "https://terminologystandardsservice.ca/fhir",
+			"type": "string"
+		}
+	]
+}
