@@ -4,8 +4,8 @@
 		"name": "Terminology Standards Service Collection",
 		"description": "Documentation describing the parts of the FHIR specification implemented by Ontoserver\n\n[https://ontoserver.csiro.au/docs/6/api-fhir.html](https://ontoserver.csiro.au/docs/6/api-fhir.html)\n\nFurther detail also available in the FHIR specification for the terminology module\n\n[https://hl7.org/fhir/R4/terminology-module.html](https://hl7.org/fhir/R4/terminology-module.html)",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "33728064",
-		"_collection_link": "https://www.postman.com/terminologystandardsservice/workspace/terminology-standards-service/collection/34886249-b80fe259-5076-470e-b28f-d193db8f46a3?action=share&source=collection_link&creator=33728064"
+		"_exporter_id": "34886249",
+		"_collection_link": "https://www.postman.com/terminologystandardsservice/workspace/terminology-standards-service/collection/34886249-b80fe259-5076-470e-b28f-d193db8f46a3?action=share&source=collection_link&creator=34886249"
 	},
 	"item": [
 		{
@@ -3323,6 +3323,11 @@
 	"auth": {
 		"type": "oauth2",
 		"oauth2": [
+			{
+				"key": "redirect_uri",
+				"value": "https://oauth.pstmn.io/v1/browser-callback",
+				"type": "string"
+			},
 			{
 				"key": "accessTokenUrl",
 				"value": "https://terminologystandardsservice.ca/authorisation/auth/realms/terminology/protocol/openid-connect/token",
