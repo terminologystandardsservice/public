@@ -319,6 +319,106 @@
 							"response": []
 						},
 						{
+							"name": "$expand Delta removed in latest release",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"resourceType\": \"Parameters\",\n    \"parameter\": [\n        {\n            \"name\": \"valueSet\",\n            \"resource\": {\n                \"resourceType\": \"ValueSet\",\n                \"compose\": {\n                    \"include\": [\n                        {\n                            \"valueSet\": [\n                                \"http://snomed.info/sct/20611000087101/version/20240531?fhir_vs=refset/22051000087105\"\n                            ]\n                        }\n                    ],\n                    \"exclude\": [\n                        {\n                            \"valueSet\": [\n                                \"http://snomed.info/sct/20611000087101/version/20240831?fhir_vs=refset/22051000087105\"\n                            ]\n                        }\n                    ]\n                }\n            }\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{terminology-server}}/ValueSet/$expand",
+									"host": [
+										"{{terminology-server}}"
+									],
+									"path": [
+										"ValueSet",
+										"$expand"
+									]
+								},
+								"description": "[https://hl7.org/fhir/R4/valueset-operation-expand.html](https://hl7.org/fhir/R4/valueset-operation-expand.html)"
+							},
+							"response": []
+						},
+						{
+							"name": "$expand Delta added in latest release",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"resourceType\": \"Parameters\",\n    \"parameter\": [\n        {\n            \"name\": \"valueSet\",\n            \"resource\": {\n                \"resourceType\": \"ValueSet\",\n                \"compose\": {\n                    \"include\": [\n                        {\n                            \"valueSet\": [\n                                \"http://snomed.info/sct/20611000087101/version/20240831?fhir_vs=refset/22051000087105\"\n                            ]\n                        }\n                    ],\n                    \"exclude\": [\n                        {\n                            \"valueSet\": [\n                                \"http://snomed.info/sct/20611000087101/version/20240531?fhir_vs=refset/22051000087105\"\n                            ]\n                        }\n                    ]\n                }\n            }\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{terminology-server}}/ValueSet/$expand",
+									"host": [
+										"{{terminology-server}}"
+									],
+									"path": [
+										"ValueSet",
+										"$expand"
+									]
+								},
+								"description": "[https://hl7.org/fhir/R4/valueset-operation-expand.html](https://hl7.org/fhir/R4/valueset-operation-expand.html)"
+							},
+							"response": []
+						},
+						{
 							"name": "Basic $expand Smart Search ******",
 							"event": [
 								{
@@ -2224,7 +2324,153 @@
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Get Latest version number of SNOMED CT",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{terminology-server}}/CodeSystem?url=http://snomed.info/sct&_elements=version&_sort=-version&_count=1",
+											"host": [
+												"{{terminology-server}}"
+											],
+											"path": [
+												"CodeSystem"
+											],
+											"query": [
+												{
+													"key": "url",
+													"value": "http://snomed.info/sct"
+												},
+												{
+													"key": "_elements",
+													"value": "version"
+												},
+												{
+													"key": "_sort",
+													"value": "-version"
+												},
+												{
+													"key": "_count",
+													"value": "1"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/fhir+json;charset=UTF-8"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 18 Sep 2024 15:44:02 GMT"
+										},
+										{
+											"key": "X-Correlation-Id",
+											"value": "64ba03efa95bcd6193a55772adfb8bf7"
+										},
+										{
+											"key": "X-Request-Id",
+											"value": "64ba03efa95bcd6193a55772adfb8bf7"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"4893693580664021843\""
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "HAPI FHIR 7.2.2 REST Server (FHIR Server; FHIR 4.0.1/R4)"
+										},
+										{
+											"key": "Last-Modified",
+											"value": "Wed, 18 Sep 2024 15:44:02 GMT"
+										},
+										{
+											"key": "Content-Encoding",
+											"value": "gzip"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "0"
+										},
+										{
+											"key": "Strict-Transport-Security",
+											"value": "max-age=31536000; includeSubDomains"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Access-Control-Allow-Methods",
+											"value": "PUT, GET, POST, DELETE, OPTIONS"
+										},
+										{
+											"key": "Access-Control-Allow-Headers",
+											"value": "DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization,AcceptX-FHIR-Starter,Origin,Accept,X-Requested-With,Content-Type,Access-Control-Request-Method,Access-Control-Request-Headers,Authorization,Prefer,Pragma,If-Match,If-None-Match"
+										},
+										{
+											"key": "Access-Control-Max-Age",
+											"value": "1728000"
+										},
+										{
+											"key": "X-Cache-Status",
+											"value": "MISS"
+										},
+										{
+											"key": "X-Cache",
+											"value": "Hit from cloudfront"
+										},
+										{
+											"key": "Via",
+											"value": "1.1 04fa8a9e73b27e301fb4b6d36f313186.cloudfront.net (CloudFront)"
+										},
+										{
+											"key": "X-Amz-Cf-Pop",
+											"value": "YTO50-P2"
+										},
+										{
+											"key": "X-Amz-Cf-Id",
+											"value": "uNRoEHA1eDdV78jQGLNheRJ8T3oXzHXQar5LQpIWyGzoFTIQNDsTdg=="
+										},
+										{
+											"key": "Age",
+											"value": "7098"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-store"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"resourceType\": \"Bundle\",\n    \"id\": \"6015e0df-9341-36be-a60d-456d5cb4703d\",\n    \"meta\": {\n        \"lastUpdated\": \"2024-09-18T15:44:02.529+00:00\"\n    },\n    \"type\": \"searchset\",\n    \"total\": 5,\n    \"link\": [\n        {\n            \"relation\": \"self\",\n            \"url\": \"https://terminologystandardsservice.ca/fhir/CodeSystem?_count=1&_elements=version&_sort=-version&url=http%3A%2F%2Fsnomed.info%2Fsct\"\n        },\n        {\n            \"relation\": \"next\",\n            \"url\": \"https://terminologystandardsservice.ca/fhir?_getpages=W%2F%224893693580664021843%22&_getpagesoffset=1&_count=1&_bundletype=searchset&_elements=version\"\n        }\n    ],\n    \"entry\": [\n        {\n            \"fullUrl\": \"https://terminologystandardsservice.ca/fhir/CodeSystem/20611000087101-20240831\",\n            \"resource\": {\n                \"resourceType\": \"CodeSystem\",\n                \"id\": \"20611000087101-20240831\",\n                \"meta\": {\n                    \"versionId\": \"1\",\n                    \"lastUpdated\": \"2024-08-29T16:40:30.122+00:00\",\n                    \"security\": [\n                        {\n                            \"system\": \"http://ontoserver.csiro.au/CodeSystem/ontoserver-permissions\",\n                            \"code\": \"restricted.read\"\n                        }\n                    ],\n                    \"tag\": [\n                        {\n                            \"system\": \"http://terminology.hl7.org/CodeSystem/v3-ObservationValue\",\n                            \"code\": \"SUBSETTED\",\n                            \"display\": \"Resource encoded in summary mode\"\n                        }\n                    ]\n                },\n                \"version\": \"http://snomed.info/sct/20611000087101/version/20240831\"\n            }\n        }\n    ]\n}"
+								}
+							]
 						},
 						{
 							"name": "Implicit ValueSet All Concepts $expand",
@@ -2720,6 +2966,187 @@
 				{
 					"name": "PCLOCD Examples",
 					"item": [
+						{
+							"name": "Get Latest version number of pCLOCD",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{terminology-server}}/CodeSystem?url=https://fhir.infoway-inforoute.ca/CodeSystem/pCLOCD&_elements=version&_sort=-version&_count=1",
+									"host": [
+										"{{terminology-server}}"
+									],
+									"path": [
+										"CodeSystem"
+									],
+									"query": [
+										{
+											"key": "url",
+											"value": "https://fhir.infoway-inforoute.ca/CodeSystem/pCLOCD"
+										},
+										{
+											"key": "_elements",
+											"value": "version"
+										},
+										{
+											"key": "_sort",
+											"value": "-version"
+										},
+										{
+											"key": "_count",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Get Latest version number of pCLOCD",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{terminology-server}}/CodeSystem?url=https://fhir.infoway-inforoute.ca/CodeSystem/pCLOCD&_elements=version&_sort=-version&_count=1",
+											"host": [
+												"{{terminology-server}}"
+											],
+											"path": [
+												"CodeSystem"
+											],
+											"query": [
+												{
+													"key": "url",
+													"value": "https://fhir.infoway-inforoute.ca/CodeSystem/pCLOCD"
+												},
+												{
+													"key": "_elements",
+													"value": "version"
+												},
+												{
+													"key": "_sort",
+													"value": "-version"
+												},
+												{
+													"key": "_count",
+													"value": "1"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/fhir+json;charset=UTF-8"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 18 Sep 2024 17:40:25 GMT"
+										},
+										{
+											"key": "X-Correlation-Id",
+											"value": "d808b6c64364dd190c93696bc6e6aa44"
+										},
+										{
+											"key": "X-Request-Id",
+											"value": "d808b6c64364dd190c93696bc6e6aa44"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"7963078546418925640\""
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "HAPI FHIR 7.2.2 REST Server (FHIR Server; FHIR 4.0.1/R4)"
+										},
+										{
+											"key": "Last-Modified",
+											"value": "Wed, 18 Sep 2024 17:40:25 GMT"
+										},
+										{
+											"key": "Content-Encoding",
+											"value": "gzip"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "0"
+										},
+										{
+											"key": "Strict-Transport-Security",
+											"value": "max-age=31536000; includeSubDomains"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Access-Control-Allow-Methods",
+											"value": "PUT, GET, POST, DELETE, OPTIONS"
+										},
+										{
+											"key": "Access-Control-Allow-Headers",
+											"value": "DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization,AcceptX-FHIR-Starter,Origin,Accept,X-Requested-With,Content-Type,Access-Control-Request-Method,Access-Control-Request-Headers,Authorization,Prefer,Pragma,If-Match,If-None-Match"
+										},
+										{
+											"key": "Access-Control-Max-Age",
+											"value": "1728000"
+										},
+										{
+											"key": "X-Cache-Status",
+											"value": "MISS"
+										},
+										{
+											"key": "X-Cache",
+											"value": "Hit from cloudfront"
+										},
+										{
+											"key": "Via",
+											"value": "1.1 04fa8a9e73b27e301fb4b6d36f313186.cloudfront.net (CloudFront)"
+										},
+										{
+											"key": "X-Amz-Cf-Pop",
+											"value": "YTO50-P2"
+										},
+										{
+											"key": "X-Amz-Cf-Id",
+											"value": "6vDcQG2AXpvDIXhFgD63CvxV6PQExDTYiU6h6SdOo9-0VKB6b89Lvg=="
+										},
+										{
+											"key": "Age",
+											"value": "133"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-store"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"resourceType\": \"Bundle\",\n    \"id\": \"0ede4db9-e03b-3ddb-8fdc-6e2293a9cd33\",\n    \"meta\": {\n        \"lastUpdated\": \"2024-09-18T17:40:25.419+00:00\"\n    },\n    \"type\": \"searchset\",\n    \"total\": 1,\n    \"link\": [\n        {\n            \"relation\": \"self\",\n            \"url\": \"https://terminologystandardsservice.ca/fhir/CodeSystem?_count=1&_elements=version&_sort=-version&url=https%3A%2F%2Ffhir.infoway-inforoute.ca%2FCodeSystem%2FpCLOCD\"\n        }\n    ],\n    \"entry\": [\n        {\n            \"fullUrl\": \"https://terminologystandardsservice.ca/fhir/CodeSystem/pclocd-20240715\",\n            \"resource\": {\n                \"resourceType\": \"CodeSystem\",\n                \"id\": \"pclocd-20240715\",\n                \"meta\": {\n                    \"versionId\": \"1\",\n                    \"lastUpdated\": \"2024-07-11T15:29:34.622+00:00\",\n                    \"security\": [\n                        {\n                            \"system\": \"http://ontoserver.csiro.au/CodeSystem/ontoserver-permissions\",\n                            \"code\": \"restricted.read\"\n                        }\n                    ],\n                    \"tag\": [\n                        {\n                            \"system\": \"http://terminology.hl7.org/CodeSystem/v3-ObservationValue\",\n                            \"code\": \"SUBSETTED\",\n                            \"display\": \"Resource encoded in summary mode\"\n                        }\n                    ]\n                },\n                \"version\": \"20240715\"\n            }\n        }\n    ]\n}"
+								}
+							]
+						},
 						{
 							"name": "ValueSet $expand pCLOCD",
 							"event": [
